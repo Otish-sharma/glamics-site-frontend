@@ -57,7 +57,7 @@ const CategoryGrid = ({ onCategorySelect }) => {
           <div className="flex items-center space-x-3">
             <img
               src={cat.image_url?.startsWith('/uploads/') 
-                ? `http://localhost:5000${cat.image_url}` 
+                ? `${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${cat.image_url}` 
                 : cat.image_url || '/placeholder.svg'
               }
               alt={cat.name}

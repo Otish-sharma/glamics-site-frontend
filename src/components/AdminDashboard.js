@@ -53,7 +53,7 @@ const AdminDashboard = () => {
         
         const url = editingProduct ? `/api/admin/products/${editingProduct.id}` : '/api/admin/products';
         const method = editingProduct ? 'PUT' : 'POST';
-        await fetch(`http://localhost:5000${url}`, { method, body: formDataObj });
+        await fetch(`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${url}`, { method, body: formDataObj });
       } else {
         const formDataObj = new FormData();
         formDataObj.append('name', formData.name);
@@ -66,7 +66,7 @@ const AdminDashboard = () => {
         
         const url = editingProduct ? `/api/admin/products/${editingProduct.id}` : '/api/admin/products';
         const method = editingProduct ? 'PUT' : 'POST';
-        await fetch(`http://localhost:5000${url}`, { method, body: formDataObj });
+        await fetch(`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${url}`, { method, body: formDataObj });
       }
       setShowForm(false);
       setEditingProduct(null);
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
         formData.append('image', imageFile);
         const url = editingCategory ? `/api/admin/categories/${editingCategory.id}` : '/api/admin/categories';
         const method = editingCategory ? 'PUT' : 'POST';
-        await fetch(`http://localhost:5000${url}`, { method, body: formData });
+        await fetch(`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${url}`, { method, body: formData });
       } else {
         // Handle image URL case
         const formData = new FormData();
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
         }
         const url = editingCategory ? `/api/admin/categories/${editingCategory.id}` : '/api/admin/categories';
         const method = editingCategory ? 'PUT' : 'POST';
-        await fetch(`http://localhost:5000${url}`, { method, body: formData });
+        await fetch(`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${url}`, { method, body: formData });
       }
       setShowCategoryForm(false);
       setEditingCategory(null);
@@ -422,7 +422,7 @@ const AdminDashboard = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <img 
                       src={category.image_url?.startsWith('/uploads/') 
-                        ? `http://localhost:5000${category.image_url}` 
+                        ? `${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${category.image_url}` 
                         : category.image_url || '/placeholder.svg'
                       } 
                       alt={category.name} 
@@ -474,7 +474,7 @@ const AdminDashboard = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <img 
                       src={product.image_url?.startsWith('/uploads/') 
-                        ? `http://localhost:5000${product.image_url}` 
+                        ? `${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'}${product.image_url}` 
                         : product.image_url || '/placeholder.svg'
                       } 
                       alt={product.name} 
